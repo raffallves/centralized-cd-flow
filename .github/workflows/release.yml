@@ -1,1 +1,22 @@
 name: Runs releases for the thing
+run-name: tezzing
+
+on:
+  push
+    #types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout front-end repo
+        uses: actions/checkout@v4
+        with:
+          repository: raffallves/actions-fe
+          path: frontend
+      
+      - name: Checkou back-end repo
+        uses: actions/checkout@v4
+        with:
+          repository: raffalves/actions-be
+          path: backend
