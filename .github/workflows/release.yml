@@ -31,9 +31,10 @@ jobs:
       
       - name: Build Back end
         run: |
-          cd backend/sam
-          sam validate
-          sam build
+          ls
+          # cd backend/sam
+          # sam validate
+          # sam build
 
       - name: Deploy Back end
         run: |
