@@ -31,6 +31,7 @@ jobs:
       
       - name: Build Back end
         run: |
+          cd backend
           ls
           # cd backend/sam
           # sam validate
@@ -38,9 +39,10 @@ jobs:
 
       - name: Deploy Back end
         run: |
-          cd backend/sam
-          sam deploy --config-env prod-green
+          # cd backend/sam
+          # sam deploy --config-env prod-green
 
       - name: Build & Deploy Front end
         run: |
           cd frontend
+          ls
