@@ -15,8 +15,8 @@ jobs:
           repository: raffallves/actions-fe
           path: frontend
       
-      - name: Checkou back-end repo
+      - name: Checkout back-end repo
         uses: actions/checkout@v4
         with:
-          repository: raffalves/actions-be
+          repository: raffallves/actions-be
           path: backend
