@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: prod
     steps:
       - name: Checkout front-end repo
         uses: actions/checkout@v4
@@ -20,3 +21,25 @@ jobs:
         with:
           repository: raffallves/actions-be
           path: backend
+
+      - name: Setup AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Build Back end
+        run: |
+          cd backend/sam
+          sam validate
+          sam build
+
+      - name: Deploy Back end
+        run: |
+          cd backend/sam
+          sam deploy --config-env prod-green
+
+      - name: Build & Deploy Front end
+        run: |
+          cd frontend
